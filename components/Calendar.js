@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import CalendarHeader from "./CalendarHeader";
 import CalendarGrid from "./CalendarGrid";
 import useCalendar from "@/hooks/useCalendar";
-import EventDialog from "./EventDialog";
-import NewEventDialog from "./NewEventDialog";
+import EventPanel from "./EventPanel";
 import YearGrid from "./YearGrid";
 export default function Calendar() {
   // const [events, setEvents] = useState([]);
@@ -80,7 +79,7 @@ export default function Calendar() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-white h-screen ">
+    <div className="flex flex-col justify-center items-center bg-white  ">
       <h1 className="text-2xl font-bold mb-4">Calendar</h1>
       <CalendarHeader
         currentDate={currentDate}
@@ -116,19 +115,41 @@ export default function Calendar() {
 
       </div>
 
-      <EventDialog
-        event={selectedEvent}
-        onClose={() => setSelectedEvent(null)}
-        onUpdate={handleUpdate}
-        onDelete={handleDelete}
+      <EventPanel
+        event={selectedEvent || (showAddDialog && { date: selectedDate?.format("YYYY-MM-DD") })}
+        onClose={() => {
+          setSelectedEvent(null);
+          setShowAddDialog(false);
+        }}
+        onSave={(event) => {
+          const updatedEvents = selectedEvent
+            ? events.map((e) => (e.id === event.id ? event : e))
+            : [...events, event];
+
+          setEvents(updatedEvents);
+          localStorage.setItem("events", JSON.stringify(updatedEvents));
+
+          fetch("/api/events", {
+            method: selectedEvent ? "PUT" : "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(event),
+          }).catch((err) => console.error("Save failed", err));
+        }}
+        onDelete={(id) => {
+          const updatedEvents = events.filter((e) => e.id !== id);
+          setEvents(updatedEvents);
+          localStorage.setItem("events", JSON.stringify(updatedEvents));
+
+          fetch("/api/events", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id }),
+          }).catch((err) => console.error("Delete failed", err));
+        }}
       />
 
-      <NewEventDialog
-        open={showAddDialog}
-        onClose={() => setShowAddDialog(false)}
-        onSave={handleSave}
-        date={selectedDate} // 👈 pre-fill date
-      />
+
+
     </div>
   );
 }
