@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "First",
+    "date": "2025-05-10",
+    "time": "09:00",
+    "duration": 60
+  },
+  {
+    "id": 2,
+    "title": "Second",
+    "date": "2025-05-15",
+    "time": "17:00",
+    "duration": 30
+  },
+  {
+    "id": 3,
+    "title": "Thrid",
+    "date": "2025-05-12",
+    "time": "12:30",
+    "duration": 90
+  },
+  {
+    "id": 4,
+    "title": "Fourth",
+    "date": "2025-05-20",
+    "time": "14:00",
+    "duration": 45
+  }
+]
