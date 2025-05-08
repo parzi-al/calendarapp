@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "title": "Team Standup Meeting",
+    "date": "2025-05-10",
+    "time": "09:00",
+    "duration": 30
+  },
+  {
+    "id": 2,
+    "title": "Lunch with Client",
+    "date": "2025-05-10",
+    "time": "12:30",
+    "duration": 90
+  },
+  {
+    "id": 3,
+    "title": "Code Review",
+    "date": "2025-05-11",
+    "time": "15:00",
+    "duration": 60
+  },
+  {
+    "id": 4,
+    "title": "Design Sprint",
+    "date": "2025-05-12",
+    "time": "10:00",
+    "duration": 120
+  },
+  {
+    "id": 5,
+    "title": "Project Kickoff",
+    "date": "2025-05-13",
+    "time": "11:00",
+    "duration": 45
+  },
+  {
+    "id": 6,
+    "title": "A",
+    "date": "2025-05-14",
+    "time": "14:00",
+    "duration": 30
+  },
+  {
+    "id": 7,
+    "title": "B",
+    "date": "2025-05-14",
+    "time": "14:00",
+    "duration": 30
+  }
+]
